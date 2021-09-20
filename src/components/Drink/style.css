@@ -3,7 +3,10 @@
   background-image:linear-gradient(transparent,red,red);
   border-radius: 10px;
   transition-duration:.75s;
-  color:black
+  color:black;
+  padding:20px;
+  display: flex;
+  flex-direction: column;
 }
 .modal-content {
   background-color: red;
@@ -13,7 +16,11 @@
   background-size: 100%;
   animation-name:imageAni;
   animation-duration:1s;
-  transition-duration:.75s
+  transition-duration:.75s;
+  margin-bottom: 10px;
+}
+.text-center{
+  margin:auto;
 }
 
 @keyframes imageAni{
