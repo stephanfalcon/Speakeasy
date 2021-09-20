@@ -46,7 +46,7 @@ class Results extends Component {
         return <div className="row d-flex justify-content-center" id="results">
           {this.props.drinks.map((drink, index) => {
             return (
-              <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
+              <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} onMouseLeave={()=>{ this.style={borderRadius:"10px"}}}/>
 
             )
           })}

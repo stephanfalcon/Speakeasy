@@ -23,6 +23,14 @@ import "./style.css";
 
 
 class Drink extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      hoverVal:{borderRadius:"10px",transition:"5s"}
+    }
+  }
+
   addFav = (drink) => {
     axios.post("/favorite", { drink: drink })
   }
@@ -36,13 +44,26 @@ class Drink extends Component {
     const blank = {
       blank: " "
     }
+    let borderHover = {
+      borderRadius:"10px"
+    }
+
+    const hoverOn = () =>{
+      console.log("border change")
+      this.setState({hoverVal:{borderRadius:"30px"}})
+    }
+
+    const hoverOff = () => {
+      this.setState({hoverVal:{borderRadius:"10px"}})
+    }
+
     // console.log(this.props.drink)
     // const { searchedInfo } = this.props
     return (
-      <div className="col-lg-3 col-md-5 col-sm-12  m-4 drinkDiv bg drink-hover" id={this.props.drink.id} key={this.props.drink.id}>
+      <div className="col-lg-3 col-md-5 col-sm-12 m-4 drinkDiv bg drink-hover" id={this.props.drink.id} key={this.props.drink.id} onMouseEnter={()=>{hoverOn()}} onMouseLeave={()=>{hoverOff()}} style = {this.state.hoverVal}>
 
         <div className="d-flex justify-content-center">
-          <img className={"img drink-hover"} style={imageCover} src={this.props.drink.img} data-title={this.props.drink.title} alt={blank.blank} onClick={this.props.handleData} data-toggle="modal" data-target={`.modal-${this.props.drink.id}`} />
+          <img className={"img drink-hover"} style={this.state.hoverVal} src={this.props.drink.img} data-title={this.props.drink.title} alt={blank.blank} onClick={this.props.handleData} data-toggle="modal" data-target={`.modal-${this.props.drink.id}`} />
 
           <div className={`modal fade modal-${this.props.drink.id}`} tabIndex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
             <Modal searchedInfo={this.props.searchedInfo} key={this.props.searchedInfo.id} />
